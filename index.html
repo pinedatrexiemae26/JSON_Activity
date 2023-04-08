@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="style.css">
+    <title>Plants</title>
+</head>
+<body>
+<h1 class="text-center">Herbal Plants Information</h1>
+<div class="container">
+	<div class="row" id="row">
+        <script>
+            //Syntax to fetch data from index.php
+                const xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://test.test/JSON_Activity/index.php");
+                xmlhttp.send();
+                xmlhttp.onload = function() {
+                    var plants = JSON.parse(this.responseText).plants;
+                    var items = document.getElementById('row');
+                    for(const i in plants){
+                        var row =`
+                                <div class="col-lg-4" >
+                                    <div class="our-team-main">
+                                        <div class="image team-front">
+                                            <img src="${plants[i].image}" class="img-fluid" />
+                                            <h3>${plants[i].name}</h3>
+                                            <p>${plants[i].scientificname}</p>
+                                        </div>
+                                        
+                                        <div class="team-back">
+                                            
+                                            <b>Uses:</b> ${plants[i].uses}<br>
+                                            <b>Timeboiled:</b> ${plants[i].timeboiled}
+                                            <h6>Facts</h6>
+                                            <span>
+                                                <ul>
+                                                    <li>${plants[i].Facts.Fact_1}</li>
+                                                    <li>${plants[i].Facts.Fact_2}</li>
+                                                    <li>${plants[i].Facts.Fact_3}</li>
+                                                    <li>${plants[i].Facts.Fact_4}</li>
+                                                    <li>${plants[i].Facts.Fact_5}</li>
+                                                </ul>
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                `;
+                items.innerHTML += row;
+            }
+    }
+        </script>
+	</div>
+</div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+</html>
